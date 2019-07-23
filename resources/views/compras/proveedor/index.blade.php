@@ -1,0 +1,44 @@
+@extends('layouts.admin')
+@section('contenido')
+<h1> Listado de proveedores </h1>
+<div class="row justify-content-left">
+    <div class="col-md-2">
+        <a href="proveedor/create" class="btn btn-success btn-block stretched-link"> Añadir Proveedor </a>
+    </div>
+</div>
+@include('compras.proveedor.search')
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped table-bordered table-condensed table-hover">
+            <thead>
+                <th>Nombre</th>
+                <th>Tipo DOC</th>
+                <th>Número DOC</th>
+                <th>Teléfono</th>
+                            
+                <th>Opciones</th>
+            </thead>
+            @foreach($personas as $per)
+            <tr>
+                <td>{{$per->nombre}}</td>
+                <td>{{$per->tipo_documento}}</td>
+                <td>{{$per->num_documento}}</td>
+                <td>{{$per->telefono}}</td>
+                
+                
+                <td>
+                    <a href="{{URL::action('ProveedorController@edit',$per->idpersona)}}"  class="btn btn-primary" role="button" aria-pressed="true">
+                        Editar
+                    </a>                    
+                    <a href="" data-target="#modal-delete-{{$per->idpersona}}" data-toggle="modal">
+                        <button class="btn btn-danger">Eliminar</button>
+                    </a>
+                </td>
+            </tr>
+            @include('compras.proveedor.modal')
+            @endforeach
+        </table>
+        {{$personas->render()}}
+    </div>
+</div>
+@endsection

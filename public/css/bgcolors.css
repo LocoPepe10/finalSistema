@@ -1,0 +1,9 @@
+.bg-display{
+	background-color: #D5FFD3;
+}
+
+.border{
+	border-style: solid;
+	border-color: black;
+	border-radius: 1px;
+}
